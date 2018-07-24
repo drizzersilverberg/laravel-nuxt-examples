@@ -34,6 +34,10 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  modules: ["@nuxtjs/axios"],
+  axios: {
+    baseURL: "http://laravel-nuxt-examples.ved/api",
+    credentials: false
+  },
 }
-
