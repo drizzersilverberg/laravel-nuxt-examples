@@ -9,11 +9,12 @@ class UserController extends Controller
 {
     public function login(Request $request)
     {
-        $user = User::where('name', $request->name)->first();
+        $user = User::where('email', $request->email)->first();
+
         if ($user) {
-           if (\Hash::check($request->pwd,$user->pwd)) {
+           if (\Hash::check($request->password, $user->password)) {
                 return response()->json([
-                    'api_token'     => $user->createToken($user->name)->accessToken
+                    'api_token'     => $user->createToken($user->email)->accessToken
                 ],200);
            } else {
                 return response()->json(['status' => 'fail'],401);
